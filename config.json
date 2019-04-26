@@ -1,0 +1,9 @@
+{
+  "port": "port",
+  "serviceName": "hostDog",
+  "database": {
+    "user": "user",
+    "pass": "pass",
+    "dbName": "dbName"
+  }
+}
