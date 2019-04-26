@@ -1,9 +1,9 @@
 {
-  "port": "port",
+  "port": ":8080",
   "serviceName": "hostDog",
   "database": {
-    "user": "user",
-    "pass": "pass",
-    "dbName": "dbName"
+    "user": "postgres",
+    "pass": "postgres",
+    "dbName": "dog_owners"
   }
 }
