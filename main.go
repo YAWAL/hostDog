@@ -4,12 +4,13 @@ package main
 
 import (
 	"flag"
+	"log"
+
 	"github.com/YAWAL/hostDog/app"
 	"github.com/YAWAL/hostDog/config"
 	"github.com/YAWAL/hostDog/database"
 	"github.com/goadesign/goa"
 	"github.com/goadesign/goa/middleware"
-	"log"
 )
 
 func main() {
