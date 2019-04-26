@@ -1,0 +1,344 @@
+basePath: /hostdog
+consumes:
+- application/json
+definitions:
+  Dogresponse:
+    description: Dog entity (default view)
+    example:
+      id: 678a0f66-833f-49fd-8540-a42e4d85556a
+      name: Sequi harum alias qui.
+      owner: 2eb646db-0331-4417-af24-9c1d4179d8fd
+    properties:
+      id:
+        description: dog's id
+        example: 678a0f66-833f-49fd-8540-a42e4d85556a
+        format: uuid
+        type: string
+      name:
+        description: dog's name
+        example: Sequi harum alias qui.
+        type: string
+      owner:
+        description: id of the dog's host
+        example: 2eb646db-0331-4417-af24-9c1d4179d8fd
+        format: uuid
+        type: string
+    title: 'Mediatype identifier: dogresponse; view=default'
+    type: object
+  DogresponseCollection:
+    description: DogresponseCollection is the media type for an array of Dogresponse
+      (default view)
+    example:
+    - id: 678a0f66-833f-49fd-8540-a42e4d85556a
+      name: Sequi harum alias qui.
+      owner: 2eb646db-0331-4417-af24-9c1d4179d8fd
+    - id: 678a0f66-833f-49fd-8540-a42e4d85556a
+      name: Sequi harum alias qui.
+      owner: 2eb646db-0331-4417-af24-9c1d4179d8fd
+    items:
+      $ref: '#/definitions/Dogresponse'
+    title: 'Mediatype identifier: dogresponse; type=collection; view=default'
+    type: array
+  Dogs:
+    description: Dogs entity (default view)
+    example:
+      dogs:
+      - id: 678a0f66-833f-49fd-8540-a42e4d85556a
+        name: Sequi harum alias qui.
+        owner: 2eb646db-0331-4417-af24-9c1d4179d8fd
+      - id: 678a0f66-833f-49fd-8540-a42e4d85556a
+        name: Sequi harum alias qui.
+        owner: 2eb646db-0331-4417-af24-9c1d4179d8fd
+      - id: 678a0f66-833f-49fd-8540-a42e4d85556a
+        name: Sequi harum alias qui.
+        owner: 2eb646db-0331-4417-af24-9c1d4179d8fd
+    properties:
+      dogs:
+        $ref: '#/definitions/DogresponseCollection'
+    title: 'Mediatype identifier: dogs; view=default'
+    type: object
+  Hostsresponse:
+    description: Host entity (default view)
+    example:
+      age: 1980424410024683491
+      id: 722eb487-c59b-4d61-891a-bed9ebd4a15e
+      name: Consectetur voluptatem labore nisi provident et.
+    properties:
+      age:
+        description: host's age
+        example: 1980424410024683491
+        format: int64
+        type: integer
+      id:
+        description: host's id
+        example: 722eb487-c59b-4d61-891a-bed9ebd4a15e
+        format: uuid
+        type: string
+      name:
+        description: host's name
+        example: Consectetur voluptatem labore nisi provident et.
+        type: string
+    required:
+    - age
+    - name
+    title: 'Mediatype identifier: hostsresponse; view=default'
+    type: object
+  HostsresponseCollection:
+    description: HostsresponseCollection is the media type for an array of Hostsresponse
+      (default view)
+    example:
+    - age: 1980424410024683491
+      id: 722eb487-c59b-4d61-891a-bed9ebd4a15e
+      name: Consectetur voluptatem labore nisi provident et.
+    - age: 1980424410024683491
+      id: 722eb487-c59b-4d61-891a-bed9ebd4a15e
+      name: Consectetur voluptatem labore nisi provident et.
+    items:
+      $ref: '#/definitions/Hostsresponse'
+    title: 'Mediatype identifier: hostsresponse; type=collection; view=default'
+    type: array
+  Hostwithdogs:
+    description: host and list of dogs (default view)
+    example:
+      dogs:
+      - id: 678a0f66-833f-49fd-8540-a42e4d85556a
+        name: Sequi harum alias qui.
+        owner: 2eb646db-0331-4417-af24-9c1d4179d8fd
+      hostAge: 2199211962419342375
+      hostName: Maiores eligendi odio fuga voluptas aliquam.
+      id: 3d9e5c53-19ea-40b2-b06b-6199259ee38c
+    properties:
+      dogs:
+        $ref: '#/definitions/DogresponseCollection'
+      hostAge:
+        description: host's age
+        example: 2199211962419342375
+        format: int64
+        type: integer
+      hostName:
+        description: host's name
+        example: Maiores eligendi odio fuga voluptas aliquam.
+        type: string
+      id:
+        description: host's id
+        example: 3d9e5c53-19ea-40b2-b06b-6199259ee38c
+        format: uuid
+        type: string
+    title: 'Mediatype identifier: hostwithdogs; view=default'
+    type: object
+  createDogPayload:
+    description: payload for creation of dog
+    example:
+      name: Consequatur expedita cupiditate iste qui.
+      owner: 4ee0b30d-23fe-4f06-8b09-b44e53185e1b
+    properties:
+      name:
+        description: dog's name
+        example: Consequatur expedita cupiditate iste qui.
+        type: string
+      owner:
+        description: host's ID
+        example: 4ee0b30d-23fe-4f06-8b09-b44e53185e1b
+        format: uuid
+        type: string
+    required:
+    - name
+    - owner
+    title: createDogPayload
+    type: object
+  createHostPayload:
+    description: payload for creation of host
+    example:
+      age: 2210880948880053555
+      name: Illum quis sed rerum facere.
+    properties:
+      age:
+        description: host's age
+        example: 2210880948880053555
+        format: int64
+        type: integer
+      name:
+        description: host's name
+        example: Illum quis sed rerum facere.
+        type: string
+    required:
+    - age
+    - name
+    title: createHostPayload
+    type: object
+host: localhost:8080
+info:
+  description: A simple goa service for hosts and their dogs
+  title: hosts and their dogs
+  version: ""
+paths:
+  /dogs:
+    post:
+      description: create dog
+      operationId: dog#create
+      parameters:
+      - description: payload for creation of dog
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/createDogPayload'
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+      schemes:
+      - http
+      summary: create dog
+      tags:
+      - dog
+  /dogs/{dogID}:
+    delete:
+      description: Delete dog by id
+      operationId: dog#delete
+      parameters:
+      - description: Dog's ID
+        in: path
+        name: dogID
+        required: true
+        type: string
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      summary: delete dog
+      tags:
+      - dog
+  /hosts:
+    get:
+      description: get all hosts
+      operationId: host#getAll
+      produces:
+      - hostsresponse; type=collection
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/HostsresponseCollection'
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      summary: getAll host
+      tags:
+      - host
+    post:
+      description: create host
+      operationId: host#create
+      parameters:
+      - description: payload for creation of host
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/createHostPayload'
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+      schemes:
+      - http
+      summary: create host
+      tags:
+      - host
+  /hosts/{hostID}:
+    delete:
+      description: delete host by id
+      operationId: host#delete
+      parameters:
+      - description: Host ID
+        in: path
+        name: hostID
+        required: true
+        type: string
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      summary: delete host
+      tags:
+      - host
+    get:
+      description: get list of dogs by host's ID
+      operationId: host#getByID
+      parameters:
+      - in: path
+        name: hostID
+        required: true
+        type: string
+      produces:
+      - hostwithdogs
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Hostwithdogs'
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      summary: getByID host
+      tags:
+      - host
+  /hosts/{hostID}/dogs:
+    get:
+      description: get list of dogs by host's ID
+      operationId: host#getDogsByHostID
+      parameters:
+      - in: path
+        name: hostID
+        required: true
+        type: string
+      produces:
+      - dogs
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Dogs'
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      summary: getDogsByHostID host
+      tags:
+      - host
+produces:
+- application/json
+responses:
+  BadRequest:
+    description: Bad Request
+  Created:
+    description: Created
+  NotFound:
+    description: Not Found
+  OK:
+    description: OK
+schemes:
+- http
+swagger: "2.0"
